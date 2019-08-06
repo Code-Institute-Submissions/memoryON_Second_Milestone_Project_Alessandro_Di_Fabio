@@ -76,7 +76,7 @@ The Timer is activated at the passage of the 1st level (the simplest).
 
 - The ability to simultaneously save multiple names in the player list and have the ability to activate multiplayer games.
 
-- Adding levels with different degrees of complexity.
+- The possibility to restart the game, afer the reset mode for example, without refreshing the page. 
 
 
 ## Technologies Used

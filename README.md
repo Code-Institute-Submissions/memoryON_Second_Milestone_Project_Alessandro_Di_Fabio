@@ -133,7 +133,7 @@ For this Project, I have used:
 
 [Developer Mozilla](https://developer.mozilla.org/en-US/)
 
-- I have used Stackoverflows to find var, explanations and answer to my questions during the project development.
+- I have used Developer Mozilla to find var, explanations and answer to my questions during the project development.
 
 
 ## Testing

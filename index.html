@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="memoryON!. A memory game for everyone">
+    <meta name="keywords" content="Memory game, memory, memo, game, everyone, flip cards">
+    <meta name="author" content="Alessandro Di Fabio">
+    
+    
+    <!-- page style sheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/main.css" type="text/css" />
+   
+  
+    
+    <!-- page title -->
+    <title> memoryON! </title>
+
+</head>
+
+<body>
+    
+    <!-- Initial dashboard -->
+    <div class="page-container">
+        <div class="container-fluid">
+            <div class="row">
+    <!-- Menu Instructions -->
+    <div class="col-md-4 aside">
+                    <div class="logo"></div>
+                    <div class="containerMenuSide sideMenu">
+                        <div class="row">
+                            <div class="col-sm-push-12 col-md-12 panelComandBoard">
+                                <div class="row">
+                                    <div class="col-4 panelControlsBox">
+                                        <button class="fas fa-play panelComandBtn" type="button" id="startBtn" onclick="playPauseGame(); switchPlayBtnClass(); "></button>
+                                    </div>
+                                    <div class="col-4 panelControlsBox">
+                                        <button type="button" class="fas fa-backward panelComandBtn" data-toggle="modal" data-target="#resetGameModal"></button>
+                                    </div>
+                                    <div class="col-4 panelControlsBox">
+                                        <button class="fas fa-bell panelComandBtn" type="button" id="soundBtn" onclick="SoundClass(); audioOnOff();"></button>
+                                    </div>
+                                </div>
+                            </div>
+    <!--Boostrap Dropdown Menu Mobile-->
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light dropdownMenu">
+                                <button class="navbar-toggler dropdownMenuBtn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" onclick="dropdownMenuIcon();">Menu <i id="menuDropdownBtn" class="fas fa-caret-down faMenu"></i></button>
+                                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                                    <div class="list-group menuNavbar">
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#InstructionModalCenter" onclick="stopTimer();"> <strong>How to play?</strong></button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#SettingsModalCenter" onclick="stopTimer();"> <strong>Change Player </strong></button>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+    
+    <!-- Dashboard Scores, Players, Timing, etc -->
+                <div class="col-md-8 gameContainer">
+                    <div class="row">
+                        <div class="col-xs-12 headerTab">
+                            <div class="headerContent">
+                                <div class="row">
+                                    <div class="col-6  levelBtn">
+                                        <p id="playerName" class="mb-1"></p>
+                                    </div>
+                                    <div class="col-6  levelBtn">
+                                        <p id="level" class="mb-1"></p>
+                                    </div>
+                                </div>
+                                <div class="click_match_btn">
+                                    <div class="row infoMatch">
+                                        <div class="col-6 clickBtn">
+                                            <p id="totalClick" class="mb-1"></p>
+                                        </div>
+                                        <div class="col-6 matchBtn">
+                                            <p id="matches" class="mb-1"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row infoMatch">
+                                    <div class="col-sm-6 col-xs-12 scoreBtn">
+                                        <p id="levelScore" class="mb-1"></p>
+                                        <p id="totalScore" class="mb-1"></p>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 timeBtn">
+                                        <p id="timer" class="mb-1">Timer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gamepanel">
+                        <div id="loadGame" class="gamepanel">
+                            <div id="dashboardgame" class="col-xs-12 dashboardgame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--How to Play section -->
+    <div class="modal fade" id="InstructionModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">How to Play</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div>
+                                    <p class="fas fa-trophy"> Press the play button to start the game.</p>
+                                    <p class="fas fa-trophy"> Flip two cards for each turn to find the matching pairs.</p>
+                                    <p class="fas fa-trophy"> Score a point when the matching pairs have been found</p>
+                                    <p class="fas fa-trophy"> Cards flip back if they are not matching</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">OK!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  
+   <!-- Change Player Section-->
+    <div class="modal fade" id="SettingsModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Player</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body centeredContent">
+                    <div class="row bg-color-contact">
+
+                        <div class="">
+                            <div class="insertyourname">
+                            <h6><strong>Please insert your name</strong></h6>
+                            </div>
+                            <div class="row changeplayerRow">
+                                <div class="col-sm-12 col-md-6 changeplayerCol">
+                                    <input id="changeusername" name="username" class="usernameInput" type="text" placeholder="Insert your name" value="" />
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <button type="button" class="btn btn-secondary btnBody btnAssignName" onClick="changePlayerName(); displayPlayerName(); showAlertPlayerName();">Confirm Player</button>
+                                </div>
+                            </div>
+                            <div id="playerNameSuccess" class="alert alert-success alertPlayer" role="alert">
+                                Player name confirmed!
+                            </div>
+                            <div id="playerNameError" class="alert alert-danger alertPlayer" role="alert">
+                                Please, add a Player name!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- Level Modal-->
+    <div class="modal fade" id="levelTwoModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><strong>Great Job!</strong> </h5>
+                </div>
+                <div class="modal-body">
+                    <p>First Level completed, now the stopwatch will start counting. Please press next to continue! </p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>   
+    
+<!-- Level Progress Modal-->
+    <div class="modal fade" id="nextLevelModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header nextLevelModalTitle" id="nextLevelModalTitle">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <p id="endLevelSentences"></p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- Modal Levels -->
+    <div class="modal fade" id="levelFiveModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Congrats! Level 5!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <p> Please match now three cards at the same time.</p>
+                    <p>Three new cards will be added on next level.</p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();  ">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- Overlay pre loading-->
+  <div class="modal fade" id="onLoadModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title"><strong>memoryON! A memory game for everyone.</strong></h5>
+        </div>
+        <div class="modal-body">
+            <div class="overlaytext">
+            <p><strong>Please enter your player name before to start the game:</strong></p>
+            </div>
+            <div class="row changeplayerRow">
+                <div class="col-sm-12 col-md-6 changeplayerCol">
+                    <input id="username" name="username" class="usernameInput" type="text" placeholder="Insert your name" value=""/>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <button type="button" class="btn btn-secondary btnBody btnAssignName" onClick="store(); displayPlayerName(); showAlertName();">Confirm Player Name</button>
+                </div>
+            </div>
+            <div id="playerNameSuccess2" class="alert alert-success alertPlayer" role="alert">
+                    Your name has been saved!
+            </div>
+            <div id="playerNameError2" class="alert alert-danger alertPlayer" role="alert">
+                    Please insert your name!
+            </div>
+            
+            <div class="creditstext" >
+            <h5><strong>Credits</strong></h5>
+                    <ul>
+                        <div class="projecttext">
+                            <p class="fas fa-trophy"> 2019 &copy Game developed as second milestone Project for Code Institute</p>
+                            <p class="fas fa-trophy"> Project developed by:</strong></p>
+                            <br>
+                            <div class="centeredContent">
+                            <a target="_blank" href="https://github.com/aledfb"><i class="fab fa-github-square faGitHubIcons"></i></a>
+                            <a target="_blank" href="https://www.linkedin.com/in/alessandro-di-fabio-7336b212a/"><i class="fab fa-linkedin faLinkedinIcons"></i></a>
+                            </div>
+                        </div>
+                    </ul>
+                   </div>                
+                    <br/>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onClick="store(); displayPlayerName(); showAlertPlayer();">Next</button>
+                 </div>
+              </div>
+            </div>
+        </div>
+   
+      
+
+<!-- Reset-->
+    <div class="modal fade " id="resetGameModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content reset">
+                <div class="modal-header resetHeader centeredContent">
+                    <h5 class="modal-title resetTitle">Are you sure to reset?</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Proceeding everything will be lost.</p>
+                    <button type="button" class="btn btn-secondary UndoResetBtn" data-dismiss="modal">Undo</button>
+                    <button class="btn btn-secondary confirmResetBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- Reset confirmation-->
+    <div class="modal fade" id="successAlertModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content moodalResetContent">
+                <div class="modal-body">
+                    <p>Reset Confirmed!</p>
+                    <i class="fas fa-thumbs-up faResetSuccess"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- End App-->
+    
+   <div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalSuccessContent">
+                <div class="modal-body">
+                    <p class="endAppSentence" id="endAppSentence"></p>
+                    <p class="endAppSentence" id="totalMatchScore"></p>
+                    <p class="endAppSentence">Your time is <span id="endapptimer"></span></p>
+                    <img class="endAppImg" id="bestScoreEndApp" src="https://www.gifanimate.com/data/media/298/cibo-e-bevanda-immagine-animata-0134.gif" alt="high score gif" />
+                    <img class="endAppImg" id="midScoreEndApp" src="https://www.gifanimate.com/data/media/298/cibo-e-bevanda-immagine-animata-0425.gif" alt="mid score gif" />
+                    <img class="endAppImg" id="lowScoreEndApp" src="https://www.gifanimate.com/data/media/298/cibo-e-bevanda-immagine-animata-0002.gif" alt="low score gif" />
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-secondary endAppBtn" data-dismiss="modal" onClick="">Undo</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-secondary endAppBtn" type="button" id="endResetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();  ">Play again</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+   <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="Js/generaldashboard.js"></script>
+    <script src="Js/secondpart.js"></script>
+</body>
+
+</html>
